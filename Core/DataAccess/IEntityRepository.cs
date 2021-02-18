@@ -1,14 +1,12 @@
-﻿using Entities.Abstract;
-using Entities.Concrete;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
+using Core.Entities;
 
-namespace DataAccess.Abstract
+namespace Core.DataAccess
 {
     //new() : new'lenebilir olmalı
-    //IEntity: IEntity olabilir veya Ientity implemente eden bir nesne olabilir
+    //IEntity: IEntity olabilir veya IEntity implemente eden bir nesne olabilir
     //generic constraint
     public interface IEntityRepository<T> where T:class,IEntity,new()
     {
