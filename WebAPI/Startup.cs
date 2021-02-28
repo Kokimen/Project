@@ -1,12 +1,8 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Business.Abstract;
-using Business.Concrete;
-using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 
 namespace WebAPI
 {
@@ -23,10 +19,10 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             //Autofac, Ninject, CastleWindsor, StructureMap, LightInJect, DryInject ==>IoC Container
-            //AOP ==> Bir metodun �n�nde, sonunda �al??an kod par�ac?klar?na verilen isim.
+            //AOP ==> Bir metodun önünde, sonunda çalışan kod parçacıklarına verilen isim.
             services.AddControllers();
-            services.AddSingleton<IProductService, ProductManager>(); //E?er IProductService istenirse bana bir new ProductManager �ret ve geri ver.
-            services.AddSingleton<IProductDal, EfProductDal>(); //E?er IProductDal istenirse bana bir EfProductDal �ret ve geri ver.
+            //services.AddSingleton<IProductService, ProductManager>(); //Eğer IProductService istenirse bana bir new ProductManager üret ve geri ver.
+            //services.AddSingleton<IProductDal, EfProductDal>(); //Eğer IProductDal istenirse bana bir EfProductDal üret ve geri ver.
         }
 
 

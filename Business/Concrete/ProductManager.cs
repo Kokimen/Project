@@ -4,6 +4,8 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using Entities.DTOs;
 
@@ -43,16 +45,17 @@ namespace Business.Concrete
 
         public IDataResult<Product> GetById(int productId)
         {
-            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));        }
+            return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
+        }
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product) //void bir şey döndürmez ancak kullanıcıya geribildirim yapmak istiyoruz
         {
-            if (product.ProductName.Length<2)
-            {
-                //magic strings
-                return new ErrorResult(Messages.ProductNameInvalid);
-            }
+            //BusinessCode => İş kuralları, iş kodları.
+            //Validation => Doğrulama kodları, iş kurallarına uygun mu değil mi kontrol eder.
+
             _productDal.Add(product);
+
             return new SuccessResult(Messages.ProductAdded);
         }
     }
