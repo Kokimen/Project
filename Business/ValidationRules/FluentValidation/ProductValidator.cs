@@ -13,7 +13,7 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(p => p.UnitPrice).GreaterThan(0); //product fiyatı 0'dna büyük olmalıdır.
             RuleFor(p => p.ProductName).Must(StartWithA).WithMessage("Ürünler A Harfi ile Başlamalıdır"); //kendi kuralımızı yazdık.
             RuleFor(p => p.UnitPrice).GreaterThanOrEqualTo(10).When(p => p.CategoryId == 1); //when burada where gibi bir anlam taşıyor.
-        }
+        }  
 
         private bool StartWithA(string arg)
         {

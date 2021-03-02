@@ -6,5 +6,9 @@
         public static string ProductNameInvalid = "Your Product Name is not Valid";
         public static string MaintenanceTime = "Maintenance is Down";
         public static string ProductsListed = "Products Has Been Listed";
+        public static string ProductCountOfCategoryError = "The Category Can Handle Maximum 10 Products";
+        public static string ProductNameAlreadyExists = "Product Name Already Exists";
+        public static string CategoryCountError = "Can't Add Products While Category Numbers Higher Than 15";
+
     }
 }

@@ -13,6 +13,7 @@ namespace Business.Abstract
         IDataResult <List<ProductDetailDto>> GetProductDetails();
         IDataResult <Product> GetById(int productId);
         IResult Add(Product product); //void olan yerde artık IResult yazacak, döndürebilmek adına
+        IResult Update(Product product);
     }
 
 }
