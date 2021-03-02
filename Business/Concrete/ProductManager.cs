@@ -3,6 +3,7 @@ using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System.Collections.Generic;
+using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -14,10 +15,11 @@ namespace Business.Concrete
     public class ProductManager : IProductService //manager gördüysen iş katmanının somut hali
     {
         readonly IProductDal _productDal; //bir iş katmanı başka bir iş katmanını yenileyemediği için bunu yazıyoruz ve ctor generate ediyoruz
-
-        public ProductManager(IProductDal productDal) //injection
+        
+        public ProductManager(IProductDal productDal) //DependencyInjection
         {
             _productDal = productDal;
+            
         }
 
         public IDataResult<List<Product>> GetAll()
@@ -48,15 +50,14 @@ namespace Business.Concrete
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
         }
 
-        [ValidationAspect(typeof(ProductValidator))]
+       //[ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product) //void bir şey döndürmez ancak kullanıcıya geribildirim yapmak istiyoruz
         {
             //BusinessCode => İş kuralları, iş kodları.
-            //Validation => Doğrulama kodları, iş kurallarına uygun mu değil mi kontrol eder.
-
             _productDal.Add(product);
 
             return new SuccessResult(Messages.ProductAdded);
+
         }
     }
 
