@@ -9,6 +9,6 @@
         public static string ProductCountOfCategoryError = "The Category Can Handle Maximum 10 Products";
         public static string ProductNameAlreadyExists = "Product Name Already Exists";
         public static string CategoryCountError = "Can't Add Products While Category Numbers Higher Than 15";
-
+        public static string AuthorizationDenied = "Authorization Denied";
     }
 }

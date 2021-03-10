@@ -7,6 +7,9 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Business.BusinessAspects.Autofac;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 
 namespace Business.Concrete
@@ -51,8 +54,9 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
         }
-
-        //[ValidationAspect(typeof(ProductValidator))]
+        //product.add ve admin => Claims - Yetki
+        [SecuredOperation("product.add,admin")]
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product) //void bir şey döndürmez ancak kullanıcıya geribildirim yapmak istiyoruz o yüzden IResult.
         {
             //BusinessCode => İş kuralları, iş kodları.
@@ -69,7 +73,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
         }
 
-        //[ValidationAspect(typeof(ProductValidator))]
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Update(Product product)
         {
             throw new NotImplementedException();
